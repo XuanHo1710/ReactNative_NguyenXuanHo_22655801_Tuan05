@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, FlatList } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 // You can import supported modules from npm
 import { Card } from 'react-native-paper';
 import { RiArrowGoBackLine } from "react-icons/ri";
+import { MdMoreHoriz } from "react-icons/md";
 
 import { IoCartOutline } from "react-icons/io5";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
 
 import { useEffect, useState } from 'react'
 
@@ -30,11 +32,12 @@ export default function App() {
                 <View style={styles.container}>
                     <View style={styles.contentCenter} styles={{ backgroundColor: "#1BA9FF" }}>
                         <FaArrowLeft />
-                        <Text>Chat</Text>
+                        <View style={{ display: "flex", gap: 10, flexDirection: "row", width: 170, backgroundColor: "white", padding: 4 }}>
+                            <FaSearch style={{ color: "black", width: 20, height: 20 }} />
+                            <TextInput style={{ width: "80%" }} placeholder="Dây cáp usb" />
+                        </View>
                         <IoCartOutline />
-                    </View>
-                    <View style={styles.subHeaderCenter}>
-                        Bạn có thắc mắc với sản phẩm vừa xem. Đừng ngại chat với shop!
+                        <MdMoreHoriz />
                     </View>
                     <View style={{ border: "1px solid #c4c4c4" }}> </View>
                     <View style={{ flex: 1, height: "40px" }}>
@@ -42,7 +45,8 @@ export default function App() {
                             data={products}
                             keyExtractor={(item) => item.id}
                             renderItem={ProductItem}
-                            style={{ height: "500px" }}
+                            style={{ height: "500px", scrollWidth: "none" }}
+                            numColumns={2}
                         />
 
                     </View>
@@ -81,8 +85,11 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
         padding: "10px 15px",
-        backgroundColor: "#1BA9FF"
+        backgroundColor: "#1BA9FF",
+        color: "white",
+        fontSize: 20
     },
     subHeaderCenter: {
         display: "flex",
